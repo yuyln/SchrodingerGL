@@ -8,7 +8,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <float.h>
-//TODO: Share same GPU buffer between OpenCL and OpenGL -> reduces overhead by read/write buffers
+
+//TODO: Normalize units
+//TODO: Convergence condition of dt
+//TODO: Share buffers between OpenCL and OpenGL to reduce overhead by read/write
 
 typedef struct {
 	float x;
