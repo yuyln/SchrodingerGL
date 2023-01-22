@@ -168,8 +168,8 @@ int main() {
 	double y1		= 1.0 * a0;
 	double lx		= x1 - x0;
 	double ly		= y1 - y0;
-	int ncols		= 1000;
-	int nrows		= 1000;
+	int ncols		= 100;
+	int nrows		= 100;
 	double dx		= lx / ncols;
 	double dy		= ly / nrows;
 	complex *psi0	= (complex*)calloc(nrows * ncols, sizeof(complex));
@@ -185,7 +185,7 @@ int main() {
 		for (int j = 0; j < ncols; ++j) {
 			double x = (x0 + j * dx) / a0;
 			double y = (y0 + i * dy) / a0;
-			psi0[i * ncols + j] = cmul((complex){exp((-x * x - y * y) / 0.01), 0.0}, cexp_((x) / 0.01));
+			psi0[i * ncols + j] = cmul((complex){exp((-x * x - y * y) / 0.01), 0.0}, cexp_((x + y) / 0.01));
 			psi[i * ncols + j] = psi0[i * ncols + j];
 			norm2[i * ncols + j] = cmul(psi0[i * ncols + j], ccon(psi0[i * ncols + j])).r;
 		}
@@ -342,8 +342,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, tex_psi); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, ncols, nrows, 0, GL_RGBA, GL_FLOAT, tex);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -352,8 +352,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, tex_potential); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, ncols, nrows, 0, GL_RGBA, GL_FLOAT, pot_tex);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -387,7 +387,7 @@ int main() {
 		// 0 -> 2 -> 1 -> 3 -> 4
 		
 		/* dt *= maxd * maxd / (2.0 * HBAR / (2.0 * mass)) * HBAR / E0; */
-		dt *= 0.00002 * HBAR / E0;
+		dt *= 0.0005 * HBAR / E0;
 		double t = count * dt;
 		count++;
 		t = current_time;

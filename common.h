@@ -10,10 +10,7 @@ double V(double x, double y, double t) {
 	double xU = x / a0;
 	double yU = y / a0;
 	(void)t;
-	return 3000.0 * xU * xU;
-	return -900.0 / (sqrt(x * x + y * y) + 0.1);
-	return sin(x + y + t) * 10000.0;
-	return (xU > 0.3 && xU < 0.6 && yU > 0.3 && yU < 0.6) * 3000.0;
+	return -(xU > 0.3 && xU < 0.6 && yU > 0.3 && yU < 0.6) * 3000.0;
 }
 
 int boundary(int i, int limit) {
