@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\[
+i\hbar\dfrac{\partial \psi}{\partial t} = -\dfrac{\hbar^2}{2m}\nabla^2\psi+V\psi
+\]
+
+\[
+i\hbar\dfrac{\partial \psi}{\partial t} = -\dfrac{\hbar^2}{2m}\left(\dfrac{\partial^2}{\partial x^2}+\dfrac{\partial^2}{\partial y^2}\right)\psi+V\psi
+\]
+
+\[
+x=L_xx'=Lx'\;\;\;\;\;\;\;\;y=L_yy'=\alpha L_xy'=\alpha Ly'
+\]
+
+\[
+i\hbar\dfrac{\partial \psi}{\partial t} = -\dfrac{\hbar^2}{2m}\left(\dfrac{\partial^2}{L^2\partial x'^2}+\dfrac{\partial^2}{\alpha^2L^2\partial y'^2}\right)\psi+V\psi
+\]
+
+\[
+t=\dfrac{mL^2}{\hbar}\tau
+\]
+
+\[
+i\hbar\dfrac{\partial \psi}{\frac{mL^2}{\hbar}\partial \tau} = -\dfrac{\hbar^2}{2mL^2}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi+V\psi
+\]
+
+\[
+i\hbar\dfrac{\partial \psi}{\partial \tau} = \left[-\dfrac{\hbar^2}{2mL^2}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi+V\psi\right]\dfrac{mL^2}{\hbar}
+\]
+
+\[
+i\hbar\dfrac{\partial \psi}{\partial \tau} = -\dfrac{\hbar}{2}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi+\dfrac{mL^2}{\hbar}V\psi
+\]
+
+\[
+i\dfrac{\partial \psi}{\partial \tau} = -\dfrac{1}{2}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi+\dfrac{mL^2}{\hbar^2}V\psi
+\]
+
+\[V'=\dfrac{mL^2}{\hbar^2}V\]
+
+\[
+i\dfrac{\partial \psi}{\partial \tau} = -\dfrac{1}{2}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi+V'\psi
+\]
+
+\[
+\dfrac{\partial \psi}{\partial \tau} = -\dfrac{1}{2i}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi+\dfrac{1}{i}V'\psi
+\]
+
+\[
+\dfrac{\partial \psi}{\partial \tau} = \dfrac{i}{2}\left(\dfrac{\partial^2}{\partial x'^2}+\dfrac{\partial^2}{\alpha^2\partial y'^2}\right)\psi-iV'\psi
+\]
+
+
+
+\end{document}
