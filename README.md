@@ -31,7 +31,7 @@ The potential is rendered as follows: black means the higher value and white mea
 The wave is rendered using the complex phase as the color input and the squared norm acts as 
 a multiplier.
 
-https://user-images.githubusercontent.com/66006422/213948402-0c722c70-cee7-4034-af24-be32788461b6.mp4
+https://user-images.githubusercontent.com/66006422/213948479-8a0c927e-daca-4ae5-9797-c316ab5b974d.mp4
 
 Speeded up by 7x
 
