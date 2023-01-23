@@ -33,7 +33,9 @@ a multiplier.
 
 https://user-images.githubusercontent.com/66006422/213948479-8a0c927e-daca-4ae5-9797-c316ab5b974d.mp4
 
-Speeded up by 7x
+https://user-images.githubusercontent.com/66006422/213950037-fedaecc1-ae58-4ec2-925b-6656630054e8.mp4
+
+Both are speeded up by 7x
 
 ### TODO:
 - [ ] Normalize units
