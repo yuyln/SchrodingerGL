@@ -168,8 +168,8 @@ int main() {
 	double y1		= 1.0 * a0;
 	double lx		= x1 - x0;
 	double ly		= y1 - y0;
-	int ncols		= 100;
-	int nrows		= 100;
+	int ncols		= 272;
+	int nrows		= 272;
 	double dx		= lx / ncols;
 	double dy		= ly / nrows;
 	complex *psi0	= (complex*)calloc(nrows * ncols, sizeof(complex));
@@ -231,7 +231,7 @@ int main() {
 	WriteBuffer(dpsi, psi, sizeof(complex) * nrows * ncols, 0, queue);
 
 	size_t global_work	= nrows * ncols;
-	size_t local_work	= gcd(nrows * ncols, 32);
+	size_t local_work	= 32;
 
 
 
@@ -342,8 +342,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, tex_psi); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, ncols, nrows, 0, GL_RGBA, GL_FLOAT, tex);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -352,8 +352,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, tex_potential); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, ncols, nrows, 0, GL_RGBA, GL_FLOAT, pot_tex);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -387,7 +387,7 @@ int main() {
 		// 0 -> 2 -> 1 -> 3 -> 4
 		
 		/* dt *= maxd * maxd / (2.0 * HBAR / (2.0 * mass)) * HBAR / E0; */
-		dt *= 0.0005 * HBAR / E0;
+		dt *= 0.0001 * HBAR / E0;
 		double t = count * dt;
 		count++;
 		t = current_time;
