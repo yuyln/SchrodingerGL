@@ -185,7 +185,8 @@ int main() {
 		for (int j = 0; j < ncols; ++j) {
 			double x = (x0 + j * dx) / a0;
 			double y = (y0 + i * dy) / a0;
-			psi0[i * ncols + j] = cmul((complex){exp((-x * x - y * y) / 0.01), 0.0}, cexp_((x + y) / 0.01));
+			x = x + 0.3;
+			psi0[i * ncols + j] = cmul((complex){exp((-x * x - y * y) / 0.05), 0.0}, cexp_((x) / 0.01));
 			psi[i * ncols + j] = psi0[i * ncols + j];
 			norm2[i * ncols + j] = cmul(psi0[i * ncols + j], ccon(psi0[i * ncols + j])).r;
 		}

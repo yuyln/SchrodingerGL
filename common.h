@@ -10,6 +10,11 @@ double V(double x, double y, double t) {
 	double xU = x / a0;
 	double yU = y / a0;
 	(void)t;
+	int XX = xU > 0.1 && xU < 0.11;
+	int upper = XX && yU > 0.15 && yU < 1.0;
+	int inner = XX && yU > -0.05 && yU < 0.05;
+	int lower = XX && yU > -1.0 && yU < -0.15;
+	return (upper || inner || lower) * 30000.0;
 	return -(xU > 0.3 && xU < 0.6 && yU > 0.3 && yU < 0.6) * 3000.0;
 }
 
