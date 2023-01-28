@@ -10,7 +10,7 @@ kernel void Step(int nrows, int ncols, double mass, double dx, double dy,
 	psi[i] = cadd(psi0[i], dpsidt);
 	double x = x0 + col * dx;
 	double y = y0 + row * dy;
-	potential[i] = V(x, y, t);
+	potential[i] = V(x, y);
 }
 
 kernel void Normalize(global complex *psi, const double norm) {

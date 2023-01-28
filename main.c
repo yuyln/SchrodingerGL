@@ -180,7 +180,9 @@ int main() {
 	vec4f *tex		= (vec4f*)calloc(nrows * ncols, sizeof(vec4f));
 	vec4f *pot_tex	= (vec4f*)calloc(nrows * ncols, sizeof(vec4f));
 
-	double dt = 0.01;
+	double mind = dx < dy? dx: dy;
+	double dt = 0.01 * 2.0 * mind * mind;
+	(void)alpha;
 
 	for (int i = 0; i < nrows; ++i) {
 		for (int j = 0; j < ncols; ++j) {
@@ -196,7 +198,10 @@ int main() {
 	for (int i = 0; i < nrows * ncols; ++i) {
 		psi0[i] = cmul((complex){1.0 / integral.integral, 0.0}, psi0[i]);
 		psi[i] = psi0[i];
+		norm2[i] = cmul(psi0[i], ccon(psi0[i])).r;
 	}
+	integral = max_and_integrate(norm2, pot, nrows * ncols, dx, dy);
+	printf("%e\n", integral.integral);
 
 	///////////////////////////////////////////////////////////////////////////
 
@@ -344,8 +349,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, tex_psi); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, ncols, nrows, 0, GL_RGBA, GL_FLOAT, tex);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -354,8 +359,8 @@ int main() {
     glBindTexture(GL_TEXTURE_2D, tex_potential); 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, ncols, nrows, 0, GL_RGBA, GL_FLOAT, pot_tex);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -388,11 +393,10 @@ int main() {
         // Step -> psi2 -> normalize -> to_rgba -> att
 		// 0 -> 2 -> 1 -> 3 -> 4
 		
-		/* dt *= maxd * maxd / (2.0 * HBAR / (2.0 * mass)) * HBAR / E0; */
-		dt *= 0.0001 * HBAR / E0;
+		dt *= 2.0 * mind * mind;
 		double t = count * dt;
 		count++;
-		t = current_time;
+		/* t = current_time; */
 		
 		SetKernelArg(kernels[0], 6, sizeof(double), &t);
     	SetKernelArg(kernels[0], 5, sizeof(double), &dt);
