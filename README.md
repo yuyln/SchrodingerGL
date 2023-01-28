@@ -41,3 +41,4 @@ Both are speeded up by 7x
 - [ ] Normalize units
 - [ ] Convergence condition of dt
 - [ ] Share buffers between OpenCL and OpenGL to reduce overhead by read/write
+- [ ] Change to solve for eigenvalues and eigenvectors for any given potential: this assures stability for time evolution, but the potential must not be time dependent

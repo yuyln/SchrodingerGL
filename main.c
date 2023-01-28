@@ -168,6 +168,7 @@ int main() {
 	double y1		= 1.0 * a0;
 	double lx		= x1 - x0;
 	double ly		= y1 - y0;
+	double alpha    = ly / lx;
 	int ncols		= 272;
 	int nrows		= 272;
 	double dx		= lx / ncols;
@@ -179,7 +180,7 @@ int main() {
 	vec4f *tex		= (vec4f*)calloc(nrows * ncols, sizeof(vec4f));
 	vec4f *pot_tex	= (vec4f*)calloc(nrows * ncols, sizeof(vec4f));
 
-	double dt = 0.01 * HBAR / E0;
+	double dt = 0.01;
 
 	for (int i = 0; i < nrows; ++i) {
 		for (int j = 0; j < ncols; ++j) {
